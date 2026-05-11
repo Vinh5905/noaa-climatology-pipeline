@@ -39,9 +39,12 @@ tmp_dagster_home_*/
 # Docker & data
 docker/clickhouse/data/
 docker/clickhouse/logs/
+docker/clickhouse/users.d/default-user.xml
 docker/kafka/data/
 docker/kafka/logs/
 docker/metabase/data/
+docker/metabase/plugins/*.jar
+docker/metabase/plugins/*.db.mv.db
 docker/grafana/data/
 docker-compose.override.yml
 *.log

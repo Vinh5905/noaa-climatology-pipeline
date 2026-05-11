@@ -1,0 +1,14 @@
+apiVersion: 1
+
+contactPoints:
+  - orgId: 1
+    name: default-webhook
+    receivers:
+      - uid: default-webhook
+        type: webhook
+        settings:
+          # Replace with real Slack/Discord webhook URL in production
+          # See RUNBOOK.md for how to configure
+          url: http://localhost:9999/webhook-placeholder
+          httpMethod: POST
+        disableResolveMessage: false

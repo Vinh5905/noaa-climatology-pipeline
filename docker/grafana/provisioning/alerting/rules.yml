@@ -1,0 +1,11 @@
+apiVersion: 1
+
+# Alert rules — will be expanded in Phase 7
+# Placeholder to establish provisioning structure
+
+groups:
+  - orgId: 1
+    name: noaa-pipeline-alerts
+    folder: NOAA Pipeline
+    interval: 1m
+    rules: []

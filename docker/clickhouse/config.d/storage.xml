@@ -1,0 +1,31 @@
+<clickhouse>
+    <!-- Storage policy for TTL tiering (production setup) -->
+    <!-- In local dev, only default disk is used -->
+    <!-- Uncomment below for multi-disk hot/cold tiering -->
+    <!--
+    <storage_configuration>
+        <disks>
+            <default/>
+            <cold_disk>
+                <type>local</type>
+                <path>/var/lib/clickhouse/cold/</path>
+            </cold_disk>
+        </disks>
+        <policies>
+            <hot_to_cold>
+                <volumes>
+                    <hot>
+                        <disk>default</disk>
+                        <max_data_part_size_bytes>1073741824</max_data_part_size_bytes>
+                    </hot>
+                    <cold>
+                        <disk>cold_disk</disk>
+                    </cold>
+                </volumes>
+                <move_factor>0.1</move_factor>
+            </hot_to_cold>
+        </policies>
+    </storage_configuration>
+    -->
+
+</clickhouse>
