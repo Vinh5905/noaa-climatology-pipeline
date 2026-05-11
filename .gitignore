@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.uv/
+*.egg-info/
+build/
+dist/
+
+# Env & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+profiles.yml
+!profiles.yml.example
+!**/profiles.yml.example
+
+# dbt
+target/
+dbt_packages/
+logs/
+.user.yml
+
+# Dagster
+.dagster/
+storage/
+history/
+schedules/
+tmp_dagster_home_*/
+
+# Docker & data
+docker/clickhouse/data/
+docker/clickhouse/logs/
+docker/kafka/data/
+docker/kafka/logs/
+docker/metabase/data/
+docker/grafana/data/
+docker-compose.override.yml
+*.log
+
+# Backup artifacts
+backup/storage/
+*.tar.gz
+*.zst
+
+# Data files
+data/
+*.csv
+*.csv.gz
+*.parquet
+*.json
+!seeds/*.csv
+!playground/queries/**/*.yaml
+!playground/queries/**/*.yml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
