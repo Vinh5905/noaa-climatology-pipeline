@@ -1,10 +1,11 @@
 """FastAPI entry point for NOAA SQL Playground."""
 
+from pathlib import Path
+
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pathlib import Path
 
 from .clickhouse_client import execute_query
 from .query_loader import get_query, load_all_queries

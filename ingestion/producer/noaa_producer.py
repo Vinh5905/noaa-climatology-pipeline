@@ -14,16 +14,16 @@ Serialization: JSON (production would use Avro + Schema Registry).
 import argparse
 import logging
 import os
-import sys
 import time
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Any, Iterator
+from typing import Any
 
 import pyarrow.parquet as pq
-from confluent_kafka import Producer, KafkaError
+from confluent_kafka import KafkaError, Producer
 from pydantic import BaseModel, field_validator
 
-from .config import get_kafka_config, KAFKA_TOPIC_OBSERVATIONS, NOAA_S3_URL
+from .config import KAFKA_TOPIC_OBSERVATIONS, NOAA_S3_URL, get_kafka_config
 from .rate_limiter import TokenBucketRateLimiter
 
 logging.basicConfig(

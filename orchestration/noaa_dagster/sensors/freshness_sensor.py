@@ -11,8 +11,9 @@ STALENESS_THRESHOLD_SECONDS = 7200  # 2 hours
 )
 def freshness_sensor(context: SensorEvaluationContext) -> SensorResult:
     try:
-        import clickhouse_connect
         import os
+
+        import clickhouse_connect
 
         client = clickhouse_connect.get_client(
             host=os.getenv("CLICKHOUSE_HOST", "localhost"),

@@ -1,6 +1,5 @@
 """Load predefined queries from YAML files."""
 
-import hashlib
 from pathlib import Path
 
 import yaml

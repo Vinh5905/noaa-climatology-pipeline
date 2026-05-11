@@ -3,7 +3,6 @@
 from dagster import AssetExecutionContext, asset
 
 from ..resources.clickhouse import ClickHouseResource
-from ..resources.kafka import KafkaResource
 
 
 @asset(

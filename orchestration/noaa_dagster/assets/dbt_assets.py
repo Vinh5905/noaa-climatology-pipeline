@@ -3,7 +3,7 @@
 from pathlib import Path
 
 from dagster import AssetExecutionContext
-from dagster_dbt import DbtCliResource, dbt_assets, DbtProject
+from dagster_dbt import DbtCliResource, DbtProject, dbt_assets
 
 DBT_PROJECT_DIR = Path(__file__).parent.parent.parent.parent / "transform"
 

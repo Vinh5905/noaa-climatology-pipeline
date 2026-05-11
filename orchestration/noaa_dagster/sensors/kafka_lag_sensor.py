@@ -1,6 +1,6 @@
 """Sensor: alert when Kafka consumer lag exceeds threshold."""
 
-from dagster import RunRequest, SensorEvaluationContext, SensorResult, sensor
+from dagster import SensorEvaluationContext, SensorResult, sensor
 
 LAG_THRESHOLD = 1_000_000
 

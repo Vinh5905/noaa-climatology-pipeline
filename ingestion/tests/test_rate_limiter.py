@@ -2,8 +2,6 @@
 
 import time
 
-import pytest
-
 from producer.rate_limiter import TokenBucketRateLimiter
 
 
