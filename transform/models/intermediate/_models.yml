@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: int_observations_enriched
+    description: "Observations with converted units (°C, mm, m/s) and country codes"
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+      - name: date
+        tests:
+          - not_null
+      - name: year
+        tests:
+          - not_null
+      - name: country_code
+        tests:
+          - not_null
+
+  - name: int_station_yearly_agg
+    description: "Per-station annual aggregates: temperature, precipitation, extreme days"
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+      - name: year
+        tests:
+          - not_null

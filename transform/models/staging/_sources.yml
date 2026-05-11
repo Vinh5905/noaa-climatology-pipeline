@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: noaa_raw
+    database: noaa_raw
+    schema: noaa_raw
+    tables:
+      - name: observations_historical
+        description: "Bulk-loaded historical observations (1900–2010) from NOAA S3"
+      - name: observations_streaming
+        description: "Real-time observations from Kafka pipeline"
+      - name: stations
+        description: "NOAA station metadata"

@@ -1,0 +1,19 @@
+[project]
+name = "noaa-transform"
+version = "0.1.0"
+description = "dbt transform layer for NOAA climatology pipeline"
+requires-python = ">=3.11"
+dependencies = [
+    "dbt-core>=1.8.0,<2.0.0",
+    "dbt-clickhouse>=1.8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+skip-excluded-dirs = true
+
+[tool.hatch.build.targets.wheel]
+sources = []

@@ -1,0 +1,38 @@
+name: 'noaa_climatology'
+version: '1.0.0'
+config-version: 2
+
+profile: 'noaa_clickhouse'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  noaa_climatology:
+    staging:
+      +materialized: view
+      +schema: noaa_staging
+    intermediate:
+      +materialized: table
+      +schema: noaa_staging
+    marts:
+      +materialized: table
+      +schema: noaa_marts
+
+tests:
+  +severity: error
+  +store_failures: true
+  +store_failures_as: table
+
+seeds:
+  noaa_climatology:
+    +schema: noaa_staging

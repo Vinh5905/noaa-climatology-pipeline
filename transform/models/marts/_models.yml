@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: mart_global_temperature_yearly
+    description: "Global average temperature by year, aggregated from all stations"
+    columns:
+      - name: year
+        tests:
+          - not_null
+          - unique
+      - name: station_count
+        tests:
+          - not_null
+      - name: global_avg_temp_c
+        tests:
+          - not_null
+
+  - name: mart_extreme_weather_events
+    description: "Observations with extreme temperature, precipitation, or weather events"
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+      - name: date
+        tests:
+          - not_null
+      - name: event_type
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['extreme_heat', 'extreme_cold', 'heavy_rain', 'heavy_snow', 'tornado', 'other']
+
+  - name: mart_top_hottest_stations
+    description: "Top 500 stations by all-time maximum temperature"
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+          - unique
+
+  - name: mart_precipitation_by_country
+    description: "Annual precipitation statistics by country code"
+    columns:
+      - name: country_code
+        tests:
+          - not_null
+      - name: year
+        tests:
+          - not_null
+
+  - name: mart_ingestion_metrics
+    description: "Operational metrics for SLA and Grafana monitoring"
+    columns:
+      - name: source_type
+        tests:
+          - not_null

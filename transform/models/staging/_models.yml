@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_noaa__observations
+    description: "Unified observations: historical + streaming, date-filtered, normalized"
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+      - name: date
+        tests:
+          - not_null
+      - name: source_type
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['historical', 'streaming']
+
+  - name: stg_noaa__stations
+    description: "Station metadata"
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+          - unique
