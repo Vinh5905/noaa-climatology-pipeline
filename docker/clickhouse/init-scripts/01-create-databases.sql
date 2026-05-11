@@ -100,3 +100,8 @@ CREATE TABLE IF NOT EXISTS noaa_raw.observations_dlq
 ENGINE = MergeTree
 ORDER BY (_ingested_at, _kafka_partition)
 SETTINGS index_granularity = 8192;
+
+-- Phase 11: TTL policies (applied after tables are created)
+-- These ALTER TABLE commands are idempotent
+ALTER TABLE IF EXISTS noaa_raw.observations_streaming MODIFY TTL _ingested_at + INTERVAL 90 DAY;
+ALTER TABLE IF EXISTS noaa_raw.observations_dlq MODIFY TTL _ingested_at + INTERVAL 30 DAY;
