@@ -4,9 +4,11 @@ version = "0.1.0"
 description = "NOAA GHCN-D ingestion: bulk backfill + Kafka streaming producer"
 requires-python = ">=3.11"
 dependencies = [
+    "aiohttp>=3.13.5",
     "clickhouse-connect>=0.7.0",
     "clickhouse-driver>=0.2.10",
     "confluent-kafka>=2.3.0",
+    "fsspec>=2026.4.0",
     "pyarrow>=16.0.0",
     "pydantic>=2.7.0",
     "python-dotenv>=1.0.0",
