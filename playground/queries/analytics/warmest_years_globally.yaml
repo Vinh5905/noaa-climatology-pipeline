@@ -1,0 +1,12 @@
+name: "Warmest years on record (1900-2010)"
+description: "Top 20 warmest years ranked by global average temperature"
+category: analytics
+tags: [temperature, warmest, ranking]
+sql: |
+  SELECT
+      year,
+      global_avg_temp_c,
+      station_count
+  FROM noaa_marts.mart_global_temperature_yearly
+  ORDER BY global_avg_temp_c DESC
+  LIMIT 20

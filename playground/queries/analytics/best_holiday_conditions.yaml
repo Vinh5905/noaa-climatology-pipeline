@@ -1,0 +1,6 @@
+name: "Best holiday conditions"
+description: "Find top 10 stations with mild temp 15-25C and low precipitation"
+category: analytics
+tags: [auto-generated]
+sql: |
+  SELECT 1 AS placeholder -- TODO: fill in real SQL

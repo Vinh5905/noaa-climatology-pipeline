@@ -1,0 +1,16 @@
+name: "Column-level compression statistics"
+description: "Compare compressed vs uncompressed size per column in observations_historical"
+category: benchmarks
+tags: [codec, compression, columns]
+sql: |
+  SELECT
+      name AS column_name,
+      type AS column_type,
+      compression_codec,
+      formatReadableSize(data_compressed_bytes) AS compressed,
+      formatReadableSize(data_uncompressed_bytes) AS uncompressed,
+      round(data_uncompressed_bytes / data_compressed_bytes, 2) AS compression_ratio
+  FROM system.columns
+  WHERE database = 'noaa_raw'
+    AND table = 'observations_historical'
+  ORDER BY data_compressed_bytes DESC

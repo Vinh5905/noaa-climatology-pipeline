@@ -1,0 +1,16 @@
+name: "Top 20 coldest stations ever"
+description: "Stations with the lowest all-time minimum temperatures"
+category: analytics
+tags: [temperature, cold, extremes]
+sql: |
+  SELECT
+      station_id,
+      station_name,
+      country_code,
+      latitude,
+      longitude,
+      all_time_min_temp_c,
+      avg_annual_temp_c
+  FROM noaa_marts.mart_top_hottest_stations
+  ORDER BY all_time_min_temp_c ASC
+  LIMIT 20

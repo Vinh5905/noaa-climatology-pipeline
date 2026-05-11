@@ -1,0 +1,6 @@
+name: "Clickhouse parts per year partition"
+description: "Shows MergeTree part management per partition"
+category: benchmarks
+tags: [auto-generated]
+sql: |
+  SELECT 1 AS placeholder -- TODO: fill in real SQL

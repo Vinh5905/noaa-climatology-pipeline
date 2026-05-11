@@ -1,0 +1,30 @@
+<div id="editor-container">
+    <div style="margin-bottom: 0.5rem;">
+        <strong>{{ query.name }}</strong>
+        {% if query.description %}
+        <br><small style="color: var(--pico-muted-color)">{{ query.description | truncate(120) }}</small>
+        {% endif %}
+        {% if query.tags %}
+        <br>{% for tag in query.tags %}<kbd style="font-size: 0.7rem;">{{ tag }}</kbd> {% endfor %}
+        {% endif %}
+    </div>
+    <form id="query-form"
+          hx-post="/execute"
+          hx-target="#results"
+          hx-swap="innerHTML"
+          hx-indicator="#spinner">
+        <div id="monaco-editor" style="height: 200px; border: 1px solid var(--pico-border-color); border-radius: 4px;"></div>
+        <input type="hidden" name="sql" id="sql-input" value="{{ query.sql | e }}">
+        <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem; align-items: center;">
+            <button type="submit" onclick="document.getElementById('sql-input').value = window.getEditorValue()">
+                ▶ Run <small>(Ctrl+Enter)</small>
+            </button>
+            <span id="spinner" class="htmx-indicator">Running...</span>
+        </div>
+    </form>
+</div>
+<script>
+if (window.setEditorValue) {
+    window.setEditorValue({{ query.sql | tojson }});
+}
+</script>

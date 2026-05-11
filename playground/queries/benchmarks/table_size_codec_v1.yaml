@@ -1,0 +1,15 @@
+name: "Table size: observations_historical (current codec)"
+description: "Shows compressed size of the observations_historical table with Delta+ZSTD codecs"
+category: benchmarks
+tags: [codec, compression, size]
+sql: |
+  SELECT
+      database,
+      table,
+      formatReadableSize(sum(data_compressed_bytes)) AS compressed,
+      formatReadableSize(sum(data_uncompressed_bytes)) AS uncompressed,
+      round(sum(data_uncompressed_bytes) / sum(data_compressed_bytes), 2) AS ratio,
+      sum(rows) AS total_rows
+  FROM system.columns
+  WHERE database = 'noaa_raw' AND table = 'observations_historical'
+  GROUP BY database, table

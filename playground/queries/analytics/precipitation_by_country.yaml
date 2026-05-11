@@ -1,0 +1,16 @@
+name: "Average precipitation by country (1970+)"
+description: "Annual average precipitation for European countries from 1970 onward"
+category: analytics
+tags: [precipitation, country, yearly]
+sql: |
+  SELECT
+      year,
+      country_code,
+      avg_precipitation_mm,
+      rainy_days_avg
+  FROM noaa_marts.mart_precipitation_by_country
+  WHERE year >= 1970
+    AND country_code IN ('UK','FR','DE','IT','ES','PL','NL','BE','PT','SE',
+                         'NO','FI','DK','AT','CH','CZ','HU','RO','GR','TR')
+  ORDER BY country_code, year
+  LIMIT 500

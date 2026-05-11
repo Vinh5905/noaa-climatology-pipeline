@@ -1,0 +1,6 @@
+name: "Stations per country"
+description: "Count of stations per country code"
+category: analytics
+tags: [auto-generated]
+sql: |
+  SELECT 1 AS placeholder -- TODO: fill in real SQL

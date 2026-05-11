@@ -1,0 +1,17 @@
+name: "Top 20 hottest stations all-time"
+description: "Stations ranked by their all-time maximum temperature record"
+category: analytics
+tags: [temperature, stations, extremes]
+sql: |
+  SELECT
+      station_id,
+      station_name,
+      country_code,
+      latitude,
+      longitude,
+      all_time_max_temp_c,
+      avg_annual_temp_c,
+      years_of_data
+  FROM noaa_marts.mart_top_hottest_stations
+  ORDER BY all_time_max_temp_c DESC
+  LIMIT 20

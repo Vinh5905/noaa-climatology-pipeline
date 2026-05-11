@@ -1,0 +1,14 @@
+name: "Count all rows (historical + streaming)"
+description: "Total row count across both ingestion sources"
+category: ops
+tags: [count, basic]
+sql: |
+  SELECT
+      'historical' AS source,
+      count() AS rows
+  FROM noaa_raw.observations_historical
+  UNION ALL
+  SELECT
+      'streaming' AS source,
+      count() AS rows
+  FROM noaa_raw.observations_streaming

@@ -1,0 +1,17 @@
+name: "Query performance: parts and partitions"
+description: "How data is distributed across partitions — impacts query performance"
+category: benchmarks
+tags: [performance, partitions, parts]
+sql: |
+  SELECT
+      partition,
+      count() AS parts,
+      sum(rows) AS rows_in_partition,
+      formatReadableSize(sum(bytes_on_disk)) AS disk_size,
+      round(sum(bytes_on_disk) / sum(rows), 1) AS bytes_per_row
+  FROM system.parts
+  WHERE database = 'noaa_raw'
+    AND table = 'observations_historical'
+    AND active = 1
+  GROUP BY partition
+  ORDER BY partition

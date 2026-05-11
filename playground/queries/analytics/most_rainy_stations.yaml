@@ -1,0 +1,6 @@
+name: "Top 20 rainiest stations"
+description: "Stations with highest total annual precipitation"
+category: analytics
+tags: [auto-generated]
+sql: |
+  SELECT 1 AS placeholder -- TODO: fill in real SQL

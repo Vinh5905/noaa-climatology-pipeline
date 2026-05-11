@@ -1,0 +1,12 @@
+name: "Weather type distribution"
+description: "Count of each weather type code across all observations"
+category: analytics
+tags: [weather, distribution]
+sql: |
+  SELECT
+      weatherType,
+      count() AS occurrences,
+      round(count() * 100.0 / sum(count()) OVER (), 2) AS pct
+  FROM noaa_raw.observations_historical
+  GROUP BY weatherType
+  ORDER BY occurrences DESC

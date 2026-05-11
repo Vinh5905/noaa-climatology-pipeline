@@ -1,0 +1,15 @@
+name: "Active MergeTree merges"
+description: "List currently running background merges in ClickHouse (table health)"
+category: ops
+tags: [merges, system, performance]
+sql: |
+  SELECT
+      database,
+      table,
+      round(progress * 100, 1) AS progress_pct,
+      num_parts,
+      formatReadableSize(total_size_bytes_compressed) AS total_size,
+      elapsed,
+      round(elapsed / NULLIF(progress, 0) * (1 - progress), 0) AS eta_sec
+  FROM system.merges
+  ORDER BY elapsed DESC

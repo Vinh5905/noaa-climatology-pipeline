@@ -1,0 +1,14 @@
+name: "Snow coverage decline over decades"
+description: "Average snow depth per year — shows declining trend in snow coverage"
+category: analytics
+tags: [snow, climate, trend]
+sql: |
+  SELECT
+      toYear(date) AS year,
+      avg(snowDepth) AS avg_snow_depth_mm,
+      countIf(snowDepth > 0) AS snowy_station_days,
+      count() AS total_days
+  FROM noaa_raw.observations_historical
+  WHERE snowDepth >= 0
+  GROUP BY year
+  ORDER BY year

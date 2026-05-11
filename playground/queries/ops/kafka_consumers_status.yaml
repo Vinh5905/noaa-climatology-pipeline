@@ -1,0 +1,15 @@
+name: "Kafka consumers status"
+description: "Current state of all ClickHouse Kafka consumer threads"
+category: ops
+tags: [kafka, consumers, streaming]
+sql: |
+  SELECT
+      database,
+      table,
+      consumer_id,
+      num_messages_read,
+      num_commits,
+      last_poll_time,
+      last_commit_time
+  FROM system.kafka_consumers
+  ORDER BY num_messages_read DESC

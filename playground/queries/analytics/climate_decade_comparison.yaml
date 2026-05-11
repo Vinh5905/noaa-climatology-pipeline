@@ -1,0 +1,21 @@
+name: "Climate change: 1950s vs 2000s temperature comparison"
+description: "Compare average temperatures between 1950-1959 and 2000-2009 per country"
+category: analytics
+tags: [climate, comparison, decade, temperature]
+sql: |
+  SELECT
+      country_code,
+      avg(CASE WHEN year BETWEEN 1950 AND 1959 THEN avg_temp_c END) AS avg_temp_1950s,
+      avg(CASE WHEN year BETWEEN 2000 AND 2009 THEN avg_temp_c END) AS avg_temp_2000s,
+      round(
+          avg(CASE WHEN year BETWEEN 2000 AND 2009 THEN avg_temp_c END)
+          - avg(CASE WHEN year BETWEEN 1950 AND 1959 THEN avg_temp_c END),
+          2
+      ) AS warming_delta_c
+  FROM noaa_staging.int_station_yearly_agg
+  WHERE year BETWEEN 1950 AND 2009
+    AND country_code != ''
+  GROUP BY country_code
+  HAVING avg_temp_1950s IS NOT NULL AND avg_temp_2000s IS NOT NULL
+  ORDER BY warming_delta_c DESC
+  LIMIT 30

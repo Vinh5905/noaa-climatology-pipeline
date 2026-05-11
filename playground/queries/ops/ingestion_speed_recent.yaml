@@ -1,0 +1,6 @@
+name: "Ingestion speed last 10 min"
+description: "Rows per minute ingested from Kafka in last 10 minutes"
+category: ops
+tags: [auto-generated]
+sql: |
+  SELECT 1 AS placeholder -- TODO: fill in real SQL

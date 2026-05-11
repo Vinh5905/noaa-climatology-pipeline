@@ -1,0 +1,17 @@
+name: "Highest temperatures ever recorded worldwide"
+description: "Top 20 hottest days ever measured across all NOAA stations"
+category: analytics
+tags: [temperature, extremes, world]
+sql: |
+  SELECT
+      station_id,
+      name,
+      date,
+      tempMax / 10.0 AS temp_max_c,
+      location.1 AS lon,
+      location.2 AS lat,
+      elevation
+  FROM noaa_raw.observations_historical
+  WHERE tempMax > 0
+  ORDER BY tempMax DESC
+  LIMIT 20

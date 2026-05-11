@@ -1,0 +1,14 @@
+name: "Show all NOAA tables"
+description: "List all tables across noaa_raw, noaa_staging, noaa_marts"
+category: ops
+tags: [schema, tables]
+sql: |
+  SELECT
+      database,
+      name AS table_name,
+      engine,
+      formatReadableSize(total_bytes) AS disk_size,
+      total_rows
+  FROM system.tables
+  WHERE database LIKE 'noaa_%'
+  ORDER BY database, name

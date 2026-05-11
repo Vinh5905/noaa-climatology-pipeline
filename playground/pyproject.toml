@@ -1,0 +1,25 @@
+[project]
+name = "noaa-playground"
+version = "0.1.0"
+description = "SQL Playground web app — FastAPI + HTMX + Monaco Editor"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "jinja2>=3.1.4",
+    "clickhouse-connect>=0.7.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.7.0",
+    "PyYAML>=6.0.0",
+    "python-multipart>=0.0.9",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+skip-excluded-dirs = true
+
+[tool.hatch.build.targets.wheel]
+sources = []

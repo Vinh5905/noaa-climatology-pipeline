@@ -1,0 +1,13 @@
+name: "Global temperature trend (1900-2010)"
+description: "Yearly average temperature across all stations — from mart table"
+category: analytics
+tags: [temperature, trend, climate, yearly]
+sql: |
+  SELECT
+      year,
+      global_avg_temp_c,
+      global_avg_max_temp_c,
+      global_avg_min_temp_c,
+      station_count
+  FROM noaa_marts.mart_global_temperature_yearly
+  ORDER BY year

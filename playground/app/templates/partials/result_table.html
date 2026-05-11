@@ -1,0 +1,43 @@
+{% if error %}
+<article style="border-left: 4px solid var(--pico-del-color); padding: 1rem;">
+    <strong>Error:</strong> {{ error }}
+</article>
+{% elif result %}
+<div class="query-stats">
+    <small>
+        Query time: <strong>{{ "%.3f"|format(result.query_time_sec) }}s</strong> &nbsp;|&nbsp;
+        Rows read: <strong>{{ "{:,}".format(result.rows_read) }}</strong> &nbsp;|&nbsp;
+        Bytes read: <strong>{{ "%.1f"|format(result.bytes_read / 1024 / 1024) }} MB</strong> &nbsp;|&nbsp;
+        Rows/s: <strong>{{ "{:,.0f}".format(result.rows_per_sec) }}</strong> &nbsp;|&nbsp;
+        Returned: <strong>{{ result.rows_returned }}</strong> rows
+    </small>
+</div>
+{% if result.rows %}
+<div class="results-table-container">
+    <table role="grid">
+        <thead>
+            <tr>
+                <th>#</th>
+                {% for col in result.columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in result.rows %}
+            <tr>
+                <td><small>{{ loop.index }}</small></td>
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p><em>Query returned 0 rows.</em></p>
+{% endif %}
+{% else %}
+<p><em>No results.</em></p>
+{% endif %}

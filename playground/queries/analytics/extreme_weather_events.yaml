@@ -1,0 +1,13 @@
+name: "Extreme weather events by type"
+description: "Count extreme events (heat, cold, heavy rain, snow, tornado) by year"
+category: analytics
+tags: [extreme, weather, events, yearly]
+sql: |
+  SELECT
+      year,
+      event_type,
+      count() AS event_count
+  FROM noaa_marts.mart_extreme_weather_events
+  GROUP BY year, event_type
+  ORDER BY year, event_count DESC
+  LIMIT 200

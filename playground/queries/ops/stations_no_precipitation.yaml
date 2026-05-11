@@ -1,0 +1,15 @@
+name: "Stations with no precipitation data"
+description: "Find stations where all precipitation readings are zero (data quality check)"
+category: ops
+tags: [quality, stations, precipitation]
+sql: |
+  SELECT
+      station_id,
+      name,
+      count() AS records,
+      max(date) AS latest_date
+  FROM noaa_raw.observations_historical
+  GROUP BY station_id, name
+  HAVING sum(precipitation) = 0
+  ORDER BY records DESC
+  LIMIT 20

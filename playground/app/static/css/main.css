@@ -1,0 +1,79 @@
+.playground-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 1rem;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+.sidebar {
+    overflow-y: auto;
+    border-right: 1px solid var(--pico-border-color);
+    padding-right: 1rem;
+}
+
+.sidebar h6 {
+    margin-bottom: 0.5rem;
+    color: var(--pico-muted-color);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.sidebar details summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.25rem 0;
+}
+
+.query-list {
+    list-style: none;
+    padding-left: 0.5rem;
+    margin: 0.25rem 0 0.5rem;
+}
+
+.query-list li a {
+    font-size: 0.82rem;
+    display: block;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--pico-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.query-list li a:hover {
+    background: var(--pico-primary-background);
+    color: var(--pico-primary-inverse);
+}
+
+.main-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.query-stats {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--pico-border-color);
+    margin-bottom: 0.5rem;
+}
+
+.results-table-container {
+    overflow: auto;
+    flex: 1;
+}
+
+.results-table-container table {
+    font-size: 0.82rem;
+}
+
+.htmx-indicator {
+    display: none;
+    color: var(--pico-muted-color);
+}
+.htmx-request .htmx-indicator { display: inline; }
+.htmx-request.htmx-indicator { display: inline; }

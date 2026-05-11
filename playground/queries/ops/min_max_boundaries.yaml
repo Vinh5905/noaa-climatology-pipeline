@@ -1,0 +1,12 @@
+name: "Min/Max date and temperature boundaries"
+description: "Data range: earliest record, latest record, extreme temperatures"
+category: ops
+tags: [range, validation]
+sql: |
+  SELECT
+      min(date) AS earliest_date,
+      max(date) AS latest_date,
+      min(tempMin) / 10.0 AS min_temp_c,
+      max(tempMax) / 10.0 AS max_temp_c,
+      count(DISTINCT station_id) AS stations
+  FROM noaa_raw.observations_historical

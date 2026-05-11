@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="playground-layout container-fluid">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h6>QUERIES</h6>
+        {% for category, query_list in queries.items() %}
+        <details open>
+            <summary>{{ category | title }}</summary>
+            <ul class="query-list">
+                {% for q in query_list %}
+                <li>
+                    <a href="#"
+                       hx-get="/queries/{{ q.category }}/{{ q.id.split('/')[-1] }}"
+                       hx-target="#editor-content"
+                       hx-swap="innerHTML"
+                       title="{{ q.description }}">
+                        {{ q.name | truncate(40) }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </details>
+        {% endfor %}
+    </aside>
+
+    <!-- Main area -->
+    <section class="main-panel">
+        <!-- Editor -->
+        <div id="editor-content">
+            <div id="editor-container">
+                <form id="query-form"
+                      hx-post="/execute"
+                      hx-target="#results"
+                      hx-swap="innerHTML"
+                      hx-indicator="#spinner">
+                    <div id="monaco-editor" style="height: 200px; border: 1px solid var(--pico-border-color); border-radius: 4px;"></div>
+                    <input type="hidden" name="sql" id="sql-input">
+                    <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem; align-items: center;">
+                        <button type="submit" onclick="document.getElementById('sql-input').value = window.getEditorValue()">
+                            ▶ Run <small>(Ctrl+Enter)</small>
+                        </button>
+                        <span id="spinner" class="htmx-indicator">Running...</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div id="results">
+            <p style="color: var(--pico-muted-color);">Enter a query and click Run to see results.</p>
+        </div>
+    </section>
+</div>
+
+<!-- Monaco Editor -->
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.0/min/vs/loader.js"></script>
+<script src="/static/js/editor.js"></script>
+{% endblock %}

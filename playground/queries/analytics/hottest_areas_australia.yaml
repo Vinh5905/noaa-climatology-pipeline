@@ -1,0 +1,18 @@
+name: "Hottest areas in Australia (station prefix: AS)"
+description: "Top 20 hottest stations with station IDs starting with AS (Australia)"
+category: analytics
+tags: [temperature, australia, stations]
+sql: |
+  SELECT
+      station_id,
+      name,
+      max(tempMax) / 10.0 AS max_temp_c,
+      avg(tempAvg) / 10.0 AS avg_temp_c,
+      location.2 AS lat,
+      location.1 AS lon
+  FROM noaa_raw.observations_historical
+  WHERE station_id LIKE 'AS%'
+    AND tempMax > 0
+  GROUP BY station_id, name, location
+  ORDER BY max_temp_c DESC
+  LIMIT 20
