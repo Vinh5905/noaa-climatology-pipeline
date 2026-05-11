@@ -106,6 +106,26 @@ services:
       retries: 10
       start_period: 60s
 
+  ingestion:
+    build:
+      context: ../ingestion
+      dockerfile: Dockerfile
+    container_name: ingestion
+    env_file:
+      - ../.env
+    environment:
+      CLICKHOUSE_HOST: clickhouse
+      CLICKHOUSE_HTTP_PORT: "8123"
+      KAFKA_BOOTSTRAP: kafka:29092
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    profiles:
+      - tools
+    # Run specific commands: docker compose --profile tools run ingestion -m backfill.load_historical
+
 volumes:
   clickhouse-data:
   kafka-data:

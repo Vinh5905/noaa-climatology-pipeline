@@ -1,6 +1,7 @@
 .PHONY: up down logs clean bootstrap seed producer dbt-run dbt-test dbt-docs dagster-dev playground backup health help
 
 COMPOSE := docker compose -f docker/docker-compose.yml
+COMPOSE_TOOLS := docker compose -f docker/docker-compose.yml --profile tools
 CLICKHOUSE_CLIENT := docker exec -it clickhouse clickhouse-client
 
 help:
@@ -56,11 +57,11 @@ bootstrap:
 
 seed:
 	@echo "Starting historical backfill (this will take a long time)..."
-	cd ingestion && uv run python -m backfill.load_historical
+	$(COMPOSE_TOOLS) run --rm ingestion -m backfill.load_historical
 
 producer:
 	@echo "Starting Kafka producer..."
-	@bash scripts/start_producer.sh
+	$(COMPOSE_TOOLS) run --rm ingestion -m producer.noaa_producer
 
 dbt-run:
 	cd transform && dbt run

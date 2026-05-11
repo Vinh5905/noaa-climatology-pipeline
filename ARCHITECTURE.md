@@ -193,6 +193,17 @@ Config in `docker/clickhouse/config.d/storage.xml`. This is documented but not e
 
 ---
 
+## Deviation Log
+
+| Plan Spec | Actual | Reason |
+|-----------|--------|--------|
+| `PARTITION BY toYYYY(date)` | `PARTITION BY toYear(date)` | `toYYYY()` does not exist in ClickHouse 24.10; `toYear()` is the correct function |
+| `metabase/metabase:v0.51.0` | `metabase/metabase:v0.52.17` | v0.51.0 tag not published on Docker Hub |
+| `bitnami/kafka:3.7` | `apache/kafka:3.7.0` | bitnami/kafka:3.7 tag not found on Docker Hub; apache/kafka is the official image |
+| Per-year S3 parquet files `{year}.parquet` | Single file `noaa_enriched.parquet` | ClickHouse public dataset is a single 1B+ row file, not per-year files |
+
+---
+
 ## Limitations & Known Trade-offs
 
 1. **1M rows/s producer target**: Achievable on server hardware. On laptop, expect 200K-800K rows/s. The pipeline is designed to degrade gracefully — metrics will report actual throughput.

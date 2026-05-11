@@ -1,0 +1,4 @@
+<clickhouse>
+    <!-- Listen on all IPv4 interfaces so other containers can connect -->
+    <listen_host>0.0.0.0</listen_host>
+</clickhouse>
