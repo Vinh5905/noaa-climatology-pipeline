@@ -1,11 +1,6 @@
 apiVersion: 1
 
-# Alert rules — will be expanded in Phase 7
-# Placeholder to establish provisioning structure
-
-groups:
-  - orgId: 1
-    name: noaa-pipeline-alerts
-    folder: NOAA Pipeline
-    interval: 1m
-    rules: []
+# Alert rules configured manually via Grafana UI (Phase 7)
+# Automation via provisioning requires specific datasource UID setup.
+# See RUNBOOK.md §AlertSetup for manual setup instructions.
+groups: []
