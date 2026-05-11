@@ -1,0 +1,38 @@
+general:
+  remote_storage: none
+  backups_to_keep_local: 7
+  backups_to_keep_remote: 30
+  log_level: info
+  allow_empty_backups: false
+
+clickhouse:
+  username: default
+  password: changeme
+  host: clickhouse
+  port: 9000
+  disk_mapping: {}
+  skip_tables:
+    - system.*
+  tables: []
+  use_embedded_backup_restore: false
+  sync_replicated_tables: false
+  restore_as_attach: false
+  check_parts_columns: true
+
+s3:
+  access_key: ""
+  secret_key: ""
+  bucket: ""
+  endpoint: ""
+  region: us-east-1
+  path: "clickhouse-backup"
+  compression_level: 1
+  compression_format: tar
+  sse: ""
+  disable_ssl: false
+  create_bucket: true
+  object_disk_path: ""
+  storage_class: STANDARD
+  concurrency: 1
+  part_size: 0
+  max_parts_count: 512
